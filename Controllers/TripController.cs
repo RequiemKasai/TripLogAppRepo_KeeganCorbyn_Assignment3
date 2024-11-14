@@ -5,14 +5,14 @@ namespace TripsLogApp.Controllers
 {
     public class TripController : Controller
     {
-        // Display list of trips
+        //Display list of trips
         public IActionResult Index()
         {
-            // Fetch trips from database and pass to view
+            //Fetch trips from database and pass to view
             return View();
         }
 
-        // Step 1: Add Trip - Destination and Dates
+        //Step 1: Add Trip - Destination and Dates
         public IActionResult Add()
         {
             return View();
