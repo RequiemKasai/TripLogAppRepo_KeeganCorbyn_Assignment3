@@ -1,0 +1,83 @@
+﻿@model IEnumerable<TripsLogApp.Models.Trip>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Accommodation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccommodationPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccommodationEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThingToDo1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThingToDo2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThingToDo3)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Accommodation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccommodationPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccommodationEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThingToDo1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThingToDo2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThingToDo3)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TripId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TripId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TripId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
