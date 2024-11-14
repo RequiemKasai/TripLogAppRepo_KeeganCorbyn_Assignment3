@@ -1,0 +1,6 @@
+@TripLogApp_KeeganCorbyn_Assignment3_HostAddress = http://localhost:5248
+
+GET {{TripLogApp_KeeganCorbyn_Assignment3_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
