@@ -54,16 +54,34 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripId,Destination,StartDate,EndDate,Accommodation,AccommodationPhone,AccommodationEmail,ThingToDo1,ThingToDo2,ThingToDo3")] Trip trip)
+        public async Task<IActionResult> AddPage1([Bind("TripId,Destination,StartDate,EndDate,Accommodation,AccommodationPhone,AccommodationEmail,ThingToDo1,ThingToDo2,ThingToDo3")] Trip trip)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(trip);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Page2));
             }
             return View(trip);
         }
+
+
+        public IActionResult Page2()
+        {
+            return View();
+        }
+
+
+        public IActionResult GoToPage3(string? AccommodationPhone, string? AccommodationEmail)
+        {
+            return RedirectToAction(nameof(Page3));
+        }
+
+        public IActionResult Page3() { 
+            return View();
+        }
+
+       
 
         // GET: Trips/Edit/5
         public async Task<IActionResult> Edit(int? id)
