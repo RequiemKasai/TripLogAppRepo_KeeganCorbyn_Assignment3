@@ -29,6 +29,6 @@ namespace TripsLogApp.Models
         [AllowNull]
         public string? ThingToDo2 { get; set; }
         [AllowNull]
-        public string ThingToDo3 { get; set; }
+        public string? ThingToDo3 { get; set; }
     }
 }

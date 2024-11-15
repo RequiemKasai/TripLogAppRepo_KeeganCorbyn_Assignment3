@@ -44,7 +44,7 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
         }
 
         // GET: Trips/Create
-        public IActionResult Create()
+        public IActionResult AddPage1()
         {
             return View();
         }
