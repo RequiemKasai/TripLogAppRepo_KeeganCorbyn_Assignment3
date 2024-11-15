@@ -1,0 +1,27 @@
+﻿@model TripsLogApp.Models.Trip
+
+@{
+    ViewData["Title"] = "Add Trip";
+}
+
+<h2>Add Trip Destination and Dates</h2>
+<form asp-action="AddPage1" method="post">
+    <label>Destination</label>
+    <input type="text" asp-for="Destination" required />
+    <span asp-validation-for="Destination" class="text-danger"></span>
+
+    <label>Accommodations (optional)</label>
+    <input type="text" asp-for="Accommodation" />
+    <span asp-validation-for="Accommodation" class="text-danger"></span>
+
+    <label>Start Date</label>
+    <input type="date" asp-for="StartDate" required />
+    <span asp-validation-for="StartDate" class="text-danger"></span>
+
+    <label>End Date</label>
+    <input type="date" asp-for="EndDate" required />
+    <span asp-validation-for="EndDate" class="text-danger"></span>
+
+    <button type="submit">Next</button>
+    <a href="/Trips" class="button">Cancel</a>
+</form>

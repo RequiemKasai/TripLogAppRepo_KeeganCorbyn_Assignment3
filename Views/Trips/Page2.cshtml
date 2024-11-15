@@ -1,18 +1,19 @@
 ﻿@model TripsLogApp.Models.Trip
 
 @{
-    ViewData["Title"] = "Add2";
+    ViewData["Title"] = "Add Accommodation Info";
 }
 
-
-
-<div class="form-group">
-    <label asp-for="AccommodationPhone" class="control-label"></label>
-    <input asp-for="AccommodationPhone" class="form-control" />
+<h2>Add Info for Accommodation</h2>
+<form asp-action="Page2" method="post">
+    <label>Phone Number</label>
+    <input type="text" asp-for="AccommodationPhone" />
     <span asp-validation-for="AccommodationPhone" class="text-danger"></span>
-</div>
-<div class="form-group">
-    <label asp-for="AccommodationEmail" class="control-label"></label>
-    <input asp-for="AccommodationEmail" class="form-control" />
+
+    <label>Email Address</label>
+    <input type="email" asp-for="AccommodationEmail" />
     <span asp-validation-for="AccommodationEmail" class="text-danger"></span>
-</div>
+
+    <button type="submit">Next</button>
+    <a href="/Trips" class="button">Cancel</a>
+</form>
