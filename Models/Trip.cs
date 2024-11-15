@@ -16,19 +16,19 @@ namespace TripsLogApp.Models
         public DateOnly EndDate { get; set; }
         [AllowNull]
 
-        public string Accommodation { get; set; }
+        public string? Accommodation { get; set; }
         [AllowNull]
         [Phone]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage ="Requires valid phone number")]
-        public string AccommodationPhone { get; set; }
+        public string? AccommodationPhone { get; set; }
         [AllowNull]
         [EmailAddress(ErrorMessage ="requires valid email address")]
-        public string AccommodationEmail { get; set; }
+        public string? AccommodationEmail { get; set; }
         [AllowNull]
-        public string ThingToDo1 { get; set; }
+        public string? ThingToDo1 { get; set; }
         [AllowNull]
-        public string ThingToDo2 { get; set; }
+        public string? ThingToDo2 { get; set; }
         [AllowNull]
-        public string ThingToDo3 { get; set; }
+        public string? ThingToDo3 { get; set; }
     }
 }
