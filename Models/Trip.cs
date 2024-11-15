@@ -11,14 +11,15 @@ namespace TripsLogApp.Models
         [Required]
         public string Destination { get; set; }
         [Required]
-        public DateTime StartDate { get; set; }
+        public DateOnly StartDate { get; set; }
         [Required]
-        public DateTime EndDate { get; set; }
+        public DateOnly EndDate { get; set; }
         [AllowNull]
 
         public string Accommodation { get; set; }
         [AllowNull]
-        [RegularExpression(@"^(?([0-9]{3}))?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$",ErrorMessage ="Requires valid phone number")]
+        [Phone]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage ="Requires valid phone number")]
         public string AccommodationPhone { get; set; }
         [AllowNull]
         [EmailAddress(ErrorMessage ="requires valid email address")]
