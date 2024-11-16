@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using TripsLogApp.Data;
 using TripsLogApp.Models;
 
@@ -46,7 +47,7 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
         // GET: Trips/Create
         public IActionResult AddPage1()
         {
-            TempData["FormData"] = new Trip();
+            
             return View();
         }
 
@@ -67,17 +68,17 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
        //     return View(trip);
      //   }
 
-        public IActionResult AddPage1(string Destination,string? Accommodation, DateOnly StartDate, DateOnly EndDate)
+        public IActionResult FormPage1(string Destination,string? Accommodation, DateOnly StartDate, DateOnly EndDate)
         {
             if (ModelState.IsValid)
             {
-                var model = TempData["FormData"] as Trip ?? new Trip();
-                model.Destination = Destination;
-                model.Accommodation = Accommodation;
-                model.StartDate = StartDate;
-                model.EndDate = EndDate;
+                
+                TempData["Destination"] = Destination;
+                TempData["Accommodation"] = Accommodation;
+                TempData["StartDate"] = StartDate.ToString();
+                TempData["EndDate"] = EndDate.ToString();
 
-                TempData["FormData"] = model;
+                
 
                 return RedirectToAction(nameof(Page2));
             }else 
@@ -94,16 +95,16 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
         }
 
 
-        public IActionResult Page2(string? AccommodationPhone, string? AccommodationEmail)
+        public IActionResult FormPage2(string? AccommodationPhone, string? AccommodationEmail)
         {
 
             if (ModelState.IsValid)
             {
-                var model = TempData["FormData"] as Trip ?? new Trip();
-                model.AccommodationPhone = AccommodationPhone;
-                model.AccommodationEmail = AccommodationEmail;
 
-                TempData["FormData"] = model;
+                TempData["AccommodationPhone"] = AccommodationPhone;
+                TempData["AccommodationEmail"] = AccommodationEmail;
+
+                
 
                 return RedirectToAction(nameof(Page3));
             }
@@ -117,19 +118,20 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
             return View();
         }
 
-        public IActionResult Page3(string? ThingToDo1, string? ThingToDo2, string? ThingToDo3)
+        public IActionResult FormPage3(string? ThingToDo1, string? ThingToDo2, string? ThingToDo3)
         {
 
             if (ModelState.IsValid)
             {
-                var model = TempData["FormData"] as Trip ?? new Trip();
-                model.ThingToDo1 = ThingToDo1;
-                model.ThingToDo2 = ThingToDo2;
-                model.ThingToDo3 = ThingToDo3;
+                
+                TempData["ThingToDo1"] = ThingToDo1;
+                TempData["ThingToDo2"] = ThingToDo2;
+                TempData["ThingToDo3"] = ThingToDo3;
 
-                TempData["FormData"] = model;
 
-                return RedirectToAction(nameof(Page3));
+                TempData["AddedTrip"] = TempData["Destination"]; ;
+
+                return RedirectToAction(nameof(Index));
             }
             else
             {
