@@ -46,23 +46,45 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
         // GET: Trips/Create
         public IActionResult AddPage1()
         {
+            TempData["FormData"] = new Trip();
             return View();
         }
 
         // POST: Trips/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddPage1([Bind("TripId,Destination,StartDate,EndDate,Accommodation,AccommodationPhone,AccommodationEmail,ThingToDo1,ThingToDo2,ThingToDo3")] Trip trip)
+        //[HttpPost]
+      //  [ValidateAntiForgeryToken]
+        //public async Task<IActionResult> AddPage1([Bind("TripId,Destination,StartDate,EndDate,Accommodation,AccommodationPhone,AccommodationEmail,ThingToDo1,ThingToDo2,ThingToDo3")] Trip trip)
+       // {
+       //     if (ModelState.IsValid)
+      //      {
+                // _context.Add(trip);
+                // await _context.SaveChangesAsync();
+                
+        //        return RedirectToAction(nameof(Page2));
+       //     }
+       //     return View(trip);
+     //   }
+
+        public IActionResult AddPage1(string Destination,string? Accommodation, DateOnly StartDate, DateOnly EndDate)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(trip);
-                await _context.SaveChangesAsync();
+                var model = TempData["FormData"] as Trip ?? new Trip();
+                model.Destination = Destination;
+                model.Accommodation = Accommodation;
+                model.StartDate = StartDate;
+                model.EndDate = EndDate;
+
+                TempData["FormData"] = model;
+
                 return RedirectToAction(nameof(Page2));
+            }else 
+            {
+                return View();
             }
-            return View(trip);
+
         }
 
 
@@ -72,13 +94,47 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
         }
 
 
-        public IActionResult GoToPage3(string? AccommodationPhone, string? AccommodationEmail)
+        public IActionResult Page2(string? AccommodationPhone, string? AccommodationEmail)
         {
-            return RedirectToAction(nameof(Page3));
+
+            if (ModelState.IsValid)
+            {
+                var model = TempData["FormData"] as Trip ?? new Trip();
+                model.AccommodationPhone = AccommodationPhone;
+                model.AccommodationEmail = AccommodationEmail;
+
+                TempData["FormData"] = model;
+
+                return RedirectToAction(nameof(Page3));
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Page3() { 
             return View();
+        }
+
+        public IActionResult Page3(string? ThingToDo1, string? ThingToDo2, string? ThingToDo3)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var model = TempData["FormData"] as Trip ?? new Trip();
+                model.ThingToDo1 = ThingToDo1;
+                model.ThingToDo2 = ThingToDo2;
+                model.ThingToDo3 = ThingToDo3;
+
+                TempData["FormData"] = model;
+
+                return RedirectToAction(nameof(Page3));
+            }
+            else
+            {
+                return View();
+            }
         }
 
        
