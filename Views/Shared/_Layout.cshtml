@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"] - My Trip Log</title>
     <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Styles", required: false) 
 </head>
 <body>
     <header>
         <div class="banner">
             <h1>My Trip Log</h1>
-            <!-- Display the subhead only if ViewData["Subhead"] has value -->
-            @if (!string.IsNullOrEmpty(ViewData["Subhead"] as string))
+            @if (TempData["AddedTrip"] != null)
             {
-                <h2>@ViewData["Subhead"]</h2>
+                <div class="alert alert-success text-center">
+                    @TempData["AddedTrip"]
+                </div>
             }
         </div>
     </header>
@@ -23,5 +25,6 @@
     <footer>
         <p>&copy; @DateTime.Now.Year - My Trip Log</p>
     </footer>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -1,27 +1,39 @@
 ﻿@model TripsLogApp.Models.Trip
 
 @{
-    ViewData["Title"] = "Add Trip";
+    ViewData["Title"] = "Add Trip Destination and Dates";
 }
 
-<h2>Add Trip Destination and Dates</h2>
+<h2>@ViewData["Title"]</h2>
+
 <form asp-action="FormPage1" method="post">
-    <label>Destination</label>
-    <input type="text" asp-for="Destination" required />
-    <span asp-validation-for="Destination" class="text-danger"></span>
+    <div class="form-group">
+        <label for="Destination">Destination</label>
+        <input type="text" asp-for="Destination" class="form-control" required />
+        <span asp-validation-for="Destination" class="text-danger"></span>
+    </div>
 
-    <label>Accommodations (optional)</label>
-    <input type="text" asp-for="Accommodation" />
-    <span asp-validation-for="Accommodation" class="text-danger"></span>
+    <div class="form-group">
+        <label for="Accommodation">Accommodations (optional)</label>
+        <input type="text" asp-for="Accommodation" class="form-control" />
+    </div>
 
-    <label>Start Date</label>
-    <input type="date" asp-for="StartDate" required />
-    <span asp-validation-for="StartDate" class="text-danger"></span>
+    <div class="form-group">
+        <label for="StartDate">Start Date</label>
+        <input type="date" asp-for="StartDate" class="form-control" required />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
 
-    <label>End Date</label>
-    <input type="date" asp-for="EndDate" required />
-    <span asp-validation-for="EndDate" class="text-danger"></span>
+    <div class="form-group">
+        <label for="EndDate">End Date</label>
+        <input type="date" asp-for="EndDate" class="form-control" required />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
 
-    <button type="submit">Next</button>
-    <a href="/Trips" class="button">Cancel</a>
+    <button type="submit" class="btn btn-primary">Next</button>
+    <a href="/Trips" class="btn btn-secondary">Cancel</a>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

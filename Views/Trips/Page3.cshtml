@@ -5,26 +5,46 @@
 }
 
 <h2>Add Things To Do</h2>
-<form asp-action="Page3" method="post">
-    <label>Thing To Do 1</label>
-    <input type="text" asp-for="ThingToDo1" />
-    <span asp-validation-for="ThingToDo1" class="text-danger"></span>
 
-    <label>Thing To Do 2</label>
-    <input type="text" asp-for="ThingToDo2" />
-    <span asp-validation-for="ThingToDo2" class="text-danger"></span>
+<form asp-action="FormPage3" method="post">
+    <div class="form-group">
+        <label>Thing To Do 1</label>
+        <input type="text" asp-for="ThingToDo1" class="form-control" />
+        <span asp-validation-for="ThingToDo1" class="text-danger"></span>
+    </div>
 
-    <label>Thing To Do 3</label>
-    <input type="text" asp-for="ThingToDo3" />
-    <span asp-validation-for="ThingToDo3" class="text-danger"></span>
+    <div class="form-group">
+        <label>Thing To Do 2</label>
+        <input type="text" asp-for="ThingToDo2" class="form-control" />
+        <span asp-validation-for="ThingToDo2" class="text-danger"></span>
+    </div>
 
+    <div class="form-group">
+        <label>Thing To Do 3</label>
+        <input type="text" asp-for="ThingToDo3" class="form-control" />
+        <span asp-validation-for="ThingToDo3" class="text-danger"></span>
+    </div>
 
-    <input type = "hidden" asp-for="Destination" value="@ViewBag.Destination" />
+    @* Display error message for "Things To Do" *@
+    @if (ViewData.ModelState["ThingToDoError"]?.Errors.Count > 0)
+    {
+        <div class="text-danger">
+            @ViewData.ModelState["ThingToDoError"].Errors[0].ErrorMessage
+        </div>
+    }
+
+    @* Hidden input data from previous pages *@
+    <input type="hidden" asp-for="Destination" value="@ViewBag.Destination" />
     <input type="hidden" asp-for="StartDate" value="@ViewBag.StartDate" />
     <input type="hidden" asp-for="EndDate" value="@ViewBag.EndDate" />
     <input type="hidden" asp-for="Accommodation" value="@ViewBag.Accommodation" />
+    <input type="hidden" asp-for="AccommodationPhone" value="@ViewBag.AccommodationPhone" />
+    <input type="hidden" asp-for="AccommodationEmail" value="@ViewBag.AccommodationEmail" />
 
-    
-    <button type="submit">Save</button>
-    <a href="/Trips" class="button">Cancel</a>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/Trips" class="btn btn-secondary">Cancel</a>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

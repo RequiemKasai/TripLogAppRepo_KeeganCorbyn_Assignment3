@@ -4,16 +4,30 @@
     ViewData["Title"] = "Add Accommodation Info";
 }
 
-<h2>Add Info for Accommodation</h2>
+<h2>@ViewData["Title"]</h2>
+
 <form asp-action="FormPage2" method="post">
-    <label>Phone Number</label>
-    <input type="text" asp-for="AccommodationPhone" />
-    <span asp-validation-for="AccommodationPhone" class="text-danger"></span>
+    <div class="form-group">
+        <label for="AccommodationPhone">Phone Number</label>
+        <input type="text" asp-for="AccommodationPhone" class="form-control" />
+        <span asp-validation-for="AccommodationPhone" class="text-danger"></span>
+    </div>
 
-    <label>Email Address</label>
-    <input type="email" asp-for="AccommodationEmail" />
-    <span asp-validation-for="AccommodationEmail" class="text-danger"></span>
+    <div class="form-group">
+        <label for="AccommodationEmail">Email Address</label>
+        <input type="email" asp-for="AccommodationEmail" class="form-control" />
+        <span asp-validation-for="AccommodationEmail" class="text-danger"></span>
+    </div>
 
-    <button type="submit">Next</button>
-    <a href="/Trips" class="button">Cancel</a>
+    <input type="hidden" asp-for="Destination" value="@ViewBag.Destination" />
+    <input type="hidden" asp-for="StartDate" value="@ViewBag.StartDate" />
+    <input type="hidden" asp-for="EndDate" value="@ViewBag.EndDate" />
+    <input type="hidden" asp-for="Accommodation" value="@ViewBag.Accommodation" />
+
+    <button type="submit" class="btn btn-primary">Next</button>
+    <a href="/Trips" class="btn btn-secondary">Cancel</a>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

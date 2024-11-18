@@ -5,10 +5,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TripLogApp_KeeganCorbyn_Assignment3.Migrations
 {
-    /// <inheritdoc />
     public partial class InitialCreate : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -20,12 +18,12 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Migrations
                     Destination = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Accommodation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AccommodationPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AccommodationEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ThingToDo1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ThingToDo2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ThingToDo3 = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Accommodation = table.Column<string>(type: "nvarchar(max)", nullable: true), // Nullable
+                    AccommodationPhone = table.Column<string>(type: "nvarchar(max)", nullable: true), // Nullable
+                    AccommodationEmail = table.Column<string>(type: "nvarchar(max)", nullable: true), // Nullable
+                    ThingToDo1 = table.Column<string>(type: "nvarchar(max)", nullable: true), // Nullable
+                    ThingToDo2 = table.Column<string>(type: "nvarchar(max)", nullable: true), // Nullable
+                    ThingToDo3 = table.Column<string>(type: "nvarchar(max)", nullable: true)  // Nullable
                 },
                 constraints: table =>
                 {
@@ -33,7 +31,6 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Migrations
                 });
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

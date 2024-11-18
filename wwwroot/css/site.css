@@ -83,3 +83,13 @@ th {
 td {
     vertical-align: top;
 }
+
+.added-trip-message {
+    background-color: lightgrey; 
+    color: darkgrey; 
+    text-align: center; 
+    padding: 10px; 
+    margin-top: 10px; 
+    border-radius: 5px; 
+    font-weight: bold; 
+}
