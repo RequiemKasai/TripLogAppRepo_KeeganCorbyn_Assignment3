@@ -53,14 +53,13 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
         }
 
         // POST: Trips/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
 
         public async Task<IActionResult> Page3([Bind("TripId,Destination,StartDate,EndDate,Accommodation,AccommodationPhone,AccommodationEmail,ThingToDo1,ThingToDo2,ThingToDo3")] Trip trip)
         {
 
-            Console.WriteLine("test");
+            //no need to check the model state because the page 3 model has no real input validation 
+            //because the input are nullable and plain text
             _context.Add(trip);
              await _context.SaveChangesAsync();
              TempData["AddedTrip"] = "Trip to" +TempData["Destination"] ;
@@ -75,17 +74,19 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
         {
             if (ModelState.IsValid)
             {
-                Debug.Write("works?");
+                //assigns all of the form data to Tempdata
                 TempData["Destination"] = Destination;
                 TempData["Accommodation"] = Accommodation;
+                //Temp data stores everything as a string 
                 TempData["StartDate"] = StartDate.ToString();
                 TempData["EndDate"] = EndDate.ToString();
 
                 
-
+                //redirects to the next page
                 return RedirectToAction(nameof(Page2));
             }else 
             {
+                //if the model fails sends the user back to page 1 
                 return View();
             }
 
@@ -97,13 +98,13 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
             return View();
         }
 
-
+        //takes inputs from the page two form as parameters 
         public IActionResult FormPage2(string? AccommodationPhone, string? AccommodationEmail)
         {
 
             if (ModelState.IsValid)
             {
-
+                //Assigns the form inputs to tempdata
                 TempData["AccommodationPhone"] = AccommodationPhone;
                 TempData["AccommodationEmail"] = AccommodationEmail;
 
@@ -112,17 +113,18 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
                 return RedirectToAction(nameof(Page3));
             }
             else
-            {
+            { //if the model is invalid return to the privious view
                 return View();
             }
         }
 
+        // the opening for page 3 
         public IActionResult Page3() {
 
-
+            // cpmverts both the TempData that need to be Dateonly's to variables
             string? StartDate = TempData["StartDate"] as string;
             string? EndDate = TempData["EndDate"] as string;
-
+            //try catches to assign each tempdata to a viewbag, if the try fails the viewbag is assigned as null
             try
             {
                 ViewBag.Destination = TempData["Destination"];
@@ -185,21 +187,6 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
 
        
 
-        // GET: Trips/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var trip = await _context.Trips.FindAsync(id);
-            if (trip == null)
-            {
-                return NotFound();
-            }
-            return View(trip);
-        }
 
 
        
