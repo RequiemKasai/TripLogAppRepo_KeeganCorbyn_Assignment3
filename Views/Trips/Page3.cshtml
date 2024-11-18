@@ -25,14 +25,6 @@
         <span asp-validation-for="ThingToDo3" class="text-danger"></span>
     </div>
 
-    @* Display error message for "Things To Do" *@
-    @if (ViewData.ModelState["ThingToDoError"]?.Errors.Count > 0)
-    {
-        <div class="text-danger">
-            @ViewData.ModelState["ThingToDoError"].Errors[0].ErrorMessage
-        </div>
-    }
-
     @* Hidden input data from previous pages *@
     <input type="hidden" asp-for="Destination" value="@ViewBag.Destination" />
     <input type="hidden" asp-for="StartDate" value="@ViewBag.StartDate" />
