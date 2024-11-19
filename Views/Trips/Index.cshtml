@@ -7,6 +7,13 @@
 <div class="table-container">
 
     <a asp-action="AddPage1" asp-controller="Trips" class="button">Add Trip</a>
+    <button type="button" class="button delete-all-button" onclick="confirmDeleteAll()">Clear All Trips</button>
+</div>
+
+<!-- Hidden form to handle DeleteAllTrips action -->
+<form id="deleteAllForm" method="post" action="/Trips/DeleteAllTrips" style="display:none;">
+    @Html.AntiForgeryToken()
+</form>
 
     <table>
         <thead>

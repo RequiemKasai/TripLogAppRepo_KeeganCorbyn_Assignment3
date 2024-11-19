@@ -44,6 +44,20 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
             return View(trip);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAllTrips()
+        {
+            var trips = _context.Trips.ToList();
+            _context.Trips.RemoveRange(trips);
+            await _context.SaveChangesAsync();
+
+            // Set the TempData message
+            TempData["AddedTrip"] = "All trips have been cleared!";
+            return RedirectToAction(nameof(Index));
+        }
+
+
 
         // GET: Add Trip - Page 1
         public IActionResult AddPage1()
@@ -92,11 +106,24 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
         [HttpPost]
         public IActionResult FormPage2(string? AccommodationPhone, string? AccommodationEmail)
         {
-            // Validate phone number format
-            if (!string.IsNullOrEmpty(AccommodationPhone) &&
-                !System.Text.RegularExpressions.Regex.IsMatch(AccommodationPhone, @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"))
+            // Validate phone number format if provided
+            if (string.IsNullOrEmpty(AccommodationPhone))
+            {
+                ModelState.AddModelError("AccommodationPhone", "Phone number is required.");
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(AccommodationPhone, @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"))
             {
                 ModelState.AddModelError("AccommodationPhone", "Invalid phone number format (e.g., 777-555-6666).");
+            }
+
+            // Validate email address if provided
+            if (string.IsNullOrEmpty(AccommodationEmail))
+            {
+                ModelState.AddModelError("AccommodationEmail", "Email address is required.");
+            }
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(AccommodationEmail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                ModelState.AddModelError("AccommodationEmail", "Invalid email address format.");
             }
 
             if (ModelState.IsValid)
@@ -111,13 +138,14 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
                 TempData.Keep("EndDate");
                 TempData.Keep("Accommodation");
 
-                // Redirect to Page3
+                // Redirect to Page 3
                 return RedirectToAction(nameof(Page3));
             }
 
-            //Reload Page2 view with validation errors
+            // Reload Page 2 view with validation errors
             return View("Page2");
         }
+
 
         // GET: Add Things to Do and TempData - Page 3
         public IActionResult Page3()
@@ -140,23 +168,17 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
         [HttpPost]
         public async Task<IActionResult> FormPage3(string? ThingToDo1, string? ThingToDo2, string? ThingToDo3)
         {
-            // Validate that at least one "Thing To Do" is provided
-            if (string.IsNullOrEmpty(ThingToDo1) && string.IsNullOrEmpty(ThingToDo2) && string.IsNullOrEmpty(ThingToDo3))
-            {
-                ModelState.AddModelError("", "At least one 'Thing To Do' must be provided.");
-            }
-
             // Validate that necessary TempData keys are present
             if (!TempData.ContainsKey("Destination") || !TempData.ContainsKey("StartDate") || !TempData.ContainsKey("EndDate"))
             {
                 ModelState.AddModelError("", "An error occurred while processing the data. Please restart the process.");
             }
-          
+
             if (ModelState.IsValid)
             {
+                // Create a new Trip object using TempData and form inputs
                 var trip = new Trip
                 {
-                    //Create a new Trip object from TempData and form data
                     Destination = TempData["Destination"]?.ToString(),
                     Accommodation = TempData["Accommodation"]?.ToString(),
                     StartDate = DateOnly.Parse(TempData["StartDate"]?.ToString()),
@@ -175,9 +197,8 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            //Retain TempData for view
+            // Retain TempData for view
             TempData.Keep();
-            //Reload Page3 view with validation errors
             return View("Page3");
         }
 

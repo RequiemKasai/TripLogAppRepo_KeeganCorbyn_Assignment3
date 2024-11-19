@@ -7,36 +7,35 @@
 <h2>Add Things To Do</h2>
 
 <form asp-action="FormPage3" method="post">
+    <div>
+        @* Display general validation errors *@
+        <span asp-validation-summary="All" class="text-danger"></span>
+    </div>
+
     <div class="form-group">
         <label>Thing To Do 1</label>
-        <input type="text" asp-for="ThingToDo1" class="form-control" />
+        <input type="text" name="ThingToDo1" class="form-control" />
         <span asp-validation-for="ThingToDo1" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label>Thing To Do 2</label>
-        <input type="text" asp-for="ThingToDo2" class="form-control" />
-        <span asp-validation-for="ThingToDo2" class="text-danger"></span>
+        <input type="text" name="ThingToDo2" class="form-control" />
     </div>
 
     <div class="form-group">
         <label>Thing To Do 3</label>
-        <input type="text" asp-for="ThingToDo3" class="form-control" />
-        <span asp-validation-for="ThingToDo3" class="text-danger"></span>
+        <input type="text" name="ThingToDo3" class="form-control" />
     </div>
 
     @* Hidden input data from previous pages *@
-    <input type="hidden" asp-for="Destination" value="@ViewBag.Destination" />
-    <input type="hidden" asp-for="StartDate" value="@ViewBag.StartDate" />
-    <input type="hidden" asp-for="EndDate" value="@ViewBag.EndDate" />
-    <input type="hidden" asp-for="Accommodation" value="@ViewBag.Accommodation" />
-    <input type="hidden" asp-for="AccommodationPhone" value="@ViewBag.AccommodationPhone" />
-    <input type="hidden" asp-for="AccommodationEmail" value="@ViewBag.AccommodationEmail" />
+    <input type="hidden" name="Destination" value="@ViewBag.Destination" />
+    <input type="hidden" name="StartDate" value="@ViewBag.StartDate" />
+    <input type="hidden" name="EndDate" value="@ViewBag.EndDate" />
+    <input type="hidden" name="Accommodation" value="@ViewBag.Accommodation" />
+    <input type="hidden" name="AccommodationPhone" value="@ViewBag.AccommodationPhone" />
+    <input type="hidden" name="AccommodationEmail" value="@ViewBag.AccommodationEmail" />
 
     <button type="submit" class="btn btn-primary">Save</button>
     <a href="/Trips" class="btn btn-secondary">Cancel</a>
 </form>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
