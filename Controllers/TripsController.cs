@@ -158,7 +158,7 @@ namespace TripLogApp_KeeganCorbyn_Assignment3.Controllers
             ViewBag.AccommodationPhone = TempData["AccommodationPhone"];
             ViewBag.AccommodationEmail = TempData["AccommodationEmail"];
 
-            TempData.Keep(); // Retains all TempData keys for the next request
+            TempData.Keep(); // Retains all TempData keys for next request
 
             return View();
         }
