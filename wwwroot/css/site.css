@@ -28,6 +28,9 @@ form {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+    form .form-group {
+        margin-bottom: 15px;
+    }
 
     form label {
         display: block;
@@ -45,33 +48,62 @@ form {
         border-radius: 3px;
     }
 
-button {
-    margin-top: 15px;
-    padding: 10px 15px;
-    color: #fff;
+.action-buttons {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 15px; 
+}
+
+    .action-buttons .button {
+        display: inline-block;
+        padding: 10px 15px;
+        text-decoration: none;
+        background-color: #444; 
+        color: #fff;
+        cursor: pointer;
+        text-align: center;
+    }
+
+/* Common button styling */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
     border: none;
-    border-radius: 3px;
     cursor: pointer;
 }
 
-    button:hover {
-        background-color: #333;
+    /* Primary button styling */
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: 1px solid #007bff;
+        margin-top: 20px;
+        margin-right: 10px;
     }
 
-.delete-all-button {
-    float: right;
-    margin-right: 20px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 3px;
-    cursor: pointer;
-}
+        .btn-blue:hover {
+            background-color: #0056b3; 
+            border-color: #0056b3;
+        }
 
-    .delete-all-button:hover {
-        background-color: #d32f2f;
+     /* Secondary button styling */
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border: 1px solid #6c757d;
+        margin-top: 20px;
+        margin-right: 10px;
     }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #5a6268;
+        }
 
 
 .table-container {
